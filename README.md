@@ -1,4 +1,4 @@
-# pastemyst-d
+# pastemyst-d [![DUB](https://img.shields.io/dub/v/pastemyst-d)](https://code.dlang.org/packages/pastemyst-d) [![docs](https://img.shields.io/badge/docs-dpldocs-blue)](https://pastemyst-d.dpldocs.info/)
 
 pastemyst api wrapper written in D
 
