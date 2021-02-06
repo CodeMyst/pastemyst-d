@@ -1,0 +1,16 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/pastemyst-d
+pastemyst-d.so
+pastemyst-d.dylib
+pastemyst-d.dll
+pastemyst-d.a
+pastemyst-d.lib
+pastemyst-d-test-*
+libpastemyst-d.a
+*.exe
+*.o
+*.obj
+*.lst
