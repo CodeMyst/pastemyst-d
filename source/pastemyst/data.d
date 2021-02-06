@@ -1,6 +1,7 @@
 module pastemyst.data;
 
 import std.typecons;
+import std.uri;
 import vibe.d;
 import pastemyst.info;
 
@@ -31,8 +32,10 @@ public struct Language
 
     /++
      + color of the language, not guaranteed that every language has it
+     + will be #ffffff if the language doesnt have a color
      +/
-    public Nullable!string color;
+    @optional
+    public string color = "#ffffff";
 }
 
 /++
@@ -62,7 +65,7 @@ private Nullable!Language getLanguage(string endpoint, string value)
 {
     Nullable!Language lang = Nullable!Language.init;
 
-    requestHTTP(endpoint ~ value,
+    requestHTTP(endpoint ~ encodeComponent(value),
         (scope req)
         {
             req.method = HTTPMethod.GET;
@@ -71,14 +74,7 @@ private Nullable!Language getLanguage(string endpoint, string value)
         {
             if (res.statusCode != HTTPStatus.notFound)
             {
-                try
-                {
-                    lang = nullable(deserializeJson!Language(res.bodyReader.readAllUTF8()));
-                }
-                catch (Exception)
-                {
-
-                }
+                lang = nullable(deserializeJson!Language(res.bodyReader.readAllUTF8()));
             }
         }
     );
