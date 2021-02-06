@@ -1,1 +1,3 @@
-import pastemyst;
+module pastemyst;
+
+import pastemyst.data;

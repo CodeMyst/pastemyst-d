@@ -4,10 +4,10 @@
 	],
 	"copyright": "Copyright © 2021, codemyst",
 	"dependencies": {
-		"vibe-d:http": "~>0.9.3"
+		"vibe-d": "~>0.9.3"
 	},
 	"description": "an api wrapper for pastemyst",
 	"license": "MPL-2.0",
 	"name": "pastemyst-d",
-    "targetType": "library"
+	"targetType": "library"
 }
