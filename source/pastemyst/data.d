@@ -82,6 +82,7 @@ private Nullable!Language getLanguage(string endpoint, string value)
     return lang;
 }
 
+@("getting a language by name")
 unittest
 {
     assert(getLanguageByName("non existing lang").isNull());
@@ -92,6 +93,7 @@ unittest
     assert(lang.name == "D");
 }
 
+@("getting a language by extension")
 unittest
 {
     assert(getLanguageByExtension("brokey").isNull());

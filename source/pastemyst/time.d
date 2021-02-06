@@ -29,6 +29,7 @@ public ulong getExpiresInToUnixTime(ulong createdAt, ExpiresIn expiresIn)
     return time;
 }
 
+@("converting expires in value")
 unittest
 {
     assert(getExpiresInToUnixTime(1_588_441_258, ExpiresIn.oneWeek) == 1_589_046_058);

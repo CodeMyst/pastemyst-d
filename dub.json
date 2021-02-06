@@ -4,6 +4,7 @@
 	],
 	"copyright": "Copyright © 2021, codemyst",
 	"dependencies": {
+		"silly": "~>1.0.2",
 		"vibe-d": "~>0.9.3"
 	},
 	"description": "an api wrapper for pastemyst",

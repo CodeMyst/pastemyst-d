@@ -99,11 +99,13 @@ public Nullable!User getUser(string username)
     return user;
 }
 
+@("user exists")
 unittest
 {
     assert(userExists("codemyst"));
 }
 
+@("getting a user")
 unittest
 {
     assert(getUser("codemyst").get().publicProfile);
