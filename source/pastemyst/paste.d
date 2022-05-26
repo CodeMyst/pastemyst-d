@@ -252,9 +252,9 @@ public Nullable!Paste getPaste(string id, string token = "")
  +
  + if you want the paste to be tied to your account or to create a private/public paste, or use other account specific features you have to provide the token.
  +/
-public Paste createPaste(const PasteCreateInfo createInfo, string token = "")
+public Nullable!Paste createPaste(const PasteCreateInfo createInfo, string token = "")
 {
-    Paste result = Paste.init;
+    Nullable!Paste result = Nullable!Paste.init;
 
     requestHTTP(BASE_ENDPOINT ~ "paste",
         (scope req)
@@ -317,9 +317,9 @@ public void deletePaste(string id, string token)
  +
  + you cant edit the expires in value, changing it will have no effect
  +/
-public Paste editPaste(Paste paste, string token)
+public Nullable!Paste editPaste(Paste paste, string token)
 {
-    Paste result = Paste.init;
+    Nullable!Paste result = Nullable!Paste.init;
 
     requestHTTP(PASTE_ENDPOINT ~ paste.id,
         (scope req)
@@ -365,7 +365,9 @@ unittest
 
     const paste = createPaste(createInfo);
 
-    assert(paste.title == createInfo.title);
+    assert(!paste.isNull());
+
+    assert(paste.get().title == createInfo.title);
 }
 
 @("creating a private paste")
@@ -386,7 +388,9 @@ unittest
 
     const paste = createPaste(createInfo, token);
 
-    assert(paste.isPrivate);
+    assert(!paste.isNull());
+
+    assert(paste.get().isPrivate);
 }
 
 @("deleting a paste")
@@ -407,9 +411,11 @@ unittest
 
     const paste = createPaste(createInfo, token);
 
-    deletePaste(paste.id, token);
+    assert(!paste.isNull());
 
-    assert(getPaste(paste.id, token).isNull());
+    deletePaste(paste.get().id, token);
+
+    assert(getPaste(paste.get().id, token).isNull());
 }
 
 @("editing a paste")
@@ -430,7 +436,9 @@ unittest
 
     auto paste = createPaste(createInfo, token);
 
-    paste.title = "edited title";
+    assert(!paste.isNull());
 
-    editPaste(paste, token);
+    paste.get().title = "edited title";
+
+    editPaste(paste.get(), token);
 }
