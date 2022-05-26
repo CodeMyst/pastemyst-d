@@ -8,5 +8,6 @@ public const string PASTE_ENDPOINT = BASE_ENDPOINT ~ "paste/";
 
 public const string DATA_LANGUAGE_BY_NAME = DATA_ENDPOINT ~ "language?name=";
 public const string DATA_LANGUAGE_BY_EXT = DATA_ENDPOINT ~ "languageExt?extension=";
+public const string DATA_NUM_PASTES = DATA_ENDPOINT ~ "numPastes";
 
 public const string TIME_EXPIRES_IN_TO_UNIX = TIME_ENDPOINT ~ "expiresInToUnixTime";

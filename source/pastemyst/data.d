@@ -5,6 +5,8 @@ import std.uri;
 import vibe.d;
 import pastemyst.info;
 
+@safe:
+
 /++
  + a struct representing a single language
  +/
@@ -57,6 +59,27 @@ public Nullable!Language getLanguageByExtension(string extension)
 }
 
 /++
+ + returns the number of currently active pastes
+ +/
+public long getNumPastes()
+{
+    long num = -1;
+
+    requestHTTP(DATA_NUM_PASTES,
+        (scope req)
+        {
+            req.method = HTTPMethod.GET;
+        },
+        (scope res)
+        {
+            num = parseJsonString(res.bodyReader.readAllUTF8())["numPastes"].get!long();
+        }
+    );
+
+    return num;
+}
+
+/++
  + there are 2 endpoints that return languages, one by name and one by extension, they return same data
  +
  + this function just does a GET request on the provided endpoint with the provided value and returns a language
@@ -101,4 +124,10 @@ unittest
     const lang = getLanguageByExtension("d").get();
 
     assert(lang.name == "D");
+}
+
+@("number of currently active pastes")
+unittest
+{
+    assert(getNumPastes() != -1);
 }

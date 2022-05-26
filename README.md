@@ -25,6 +25,12 @@ unittest
 
     assert(lang.name == "D");
 }
+
+@("number of currently active pastes")
+unittest
+{
+    assert(getNumPastes() != -1);
+}
 ```
 
 ## time
